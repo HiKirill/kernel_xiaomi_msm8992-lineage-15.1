@@ -829,9 +829,15 @@ static void xfer_work(struct work_struct *work)
 		fifo->name, usbhs_pipe_number(pipe), pkt->length, pkt->zero);
 
 	usbhs_pipe_running(pipe, 1);
-	usbhs_pipe_set_trans_count_if_bulk(pipe, pkt->trans);
-	dma_async_issue_pending(chan);
-	usbhsf_dma_start(pipe, fifo);
+<<<<<<< HEAD
+       usbhs_pipe_set_trans_count_if_bulk(pipe, pkt->trans);
+       dma_async_issue_pending(chan);
+       usbhsf_dma_start(pipe, fifo);
+=======
+       usbhsf_dma_start(pipe, fifo);
+       usbhs_pipe_set_trans_count_if_bulk(pipe, pkt->trans);
+       dma_async_issue_pending(chan);
+>>>>>>> b2453bd445b0... usb: renesas_usbhs: fix the sequence in xfer_work()
 	usbhs_pipe_enable(pipe);
 }
 
