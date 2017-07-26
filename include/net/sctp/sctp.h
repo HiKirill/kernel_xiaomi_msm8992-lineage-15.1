@@ -556,10 +556,14 @@ _sctp_walk_params((pos), (chunk), ntohs((chunk)->chunk_hdr.length), member)
 #define _sctp_walk_params(pos, chunk, end, member)\
 for (pos.v = chunk->member;\
 <<<<<<< HEAD
+<<<<<<< HEAD
      (pos.v + offsetof(struct sctp_paramhdr, length) + sizeof(pos.p->length) <=\
 =======
      (pos.v + offsetof(struct sctp_paramhdr, length) + sizeof(pos.p->length) <\
 >>>>>>> 3cb637d2295a... sctp: don't dereference ptr before leaving _sctp_walk_{params, errors}()
+=======
+     (pos.v + offsetof(struct sctp_paramhdr, length) + sizeof(pos.p->length) <=\
+>>>>>>> 2630e5a878f7... sctp: fix the check for _sctp_walk_params and _sctp_walk_errors
       (void *)chunk + end) &&\
      pos.v <= (void *)chunk + end - ntohs(pos.p->length) &&\
      ntohs(pos.p->length) >= sizeof(sctp_paramhdr_t);\
@@ -572,10 +576,14 @@ _sctp_walk_errors((err), (chunk_hdr), ntohs((chunk_hdr)->length))
 for (err = (sctp_errhdr_t *)((void *)chunk_hdr + \
 	    sizeof(sctp_chunkhdr_t));\
 <<<<<<< HEAD
+<<<<<<< HEAD
      ((void *)err + offsetof(sctp_errhdr_t, length) + sizeof(err->length) <=\
 =======
      ((void *)err + offsetof(sctp_errhdr_t, length) + sizeof(err->length) <\
 >>>>>>> 3cb637d2295a... sctp: don't dereference ptr before leaving _sctp_walk_{params, errors}()
+=======
+     ((void *)err + offsetof(sctp_errhdr_t, length) + sizeof(err->length) <=\
+>>>>>>> 2630e5a878f7... sctp: fix the check for _sctp_walk_params and _sctp_walk_errors
       (void *)chunk_hdr + end) &&\
      (void *)err <= (void *)chunk_hdr + end - ntohs(err->length) &&\
      ntohs(err->length) >= sizeof(sctp_errhdr_t); \
