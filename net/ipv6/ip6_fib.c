@@ -1749,15 +1749,16 @@ static void fib6_net_exit(struct net *net)
 	rt6_ifdown(net, NULL);
 	del_timer_sync(&net->ipv6.ip6_fib_timer);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+/*<<<<<<< HEAD
+*<<<<<<< HEAD
+*	for (i = 0; i < FIB6_TABLE_HASHSZ; i++) {
+*=======
+*	for (i = 0; i < FIB_TABLE_HASHSZ; i++) {
+*>>>>>>> 4e39d5e48bac... ipv6: fix memory leak with multiple tables during netns destruction
+*=======
+*/
 	for (i = 0; i < FIB6_TABLE_HASHSZ; i++) {
-=======
-	for (i = 0; i < FIB_TABLE_HASHSZ; i++) {
->>>>>>> 4e39d5e48bac... ipv6: fix memory leak with multiple tables during netns destruction
-=======
-	for (i = 0; i < FIB6_TABLE_HASHSZ; i++) {
->>>>>>> 488ec7b227e4... ipv6: fix typo in fib6_net_exit()
+/*>>>>>>> 488ec7b227e4... ipv6: fix typo in fib6_net_exit()*/
 		struct hlist_head *head = &net->ipv6.fib_table_hash[i];
 		struct hlist_node *tmp;
 		struct fib6_table *tb;
