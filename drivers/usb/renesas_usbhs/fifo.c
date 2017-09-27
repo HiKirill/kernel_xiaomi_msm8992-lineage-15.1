@@ -264,6 +264,9 @@ static void usbhsf_fifo_clear(struct usbhs_pipe *pipe,
 	int ret = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5abdd6e83041... usb: renesas_usbhs: fix usbhsf_fifo_clear() for RX direction
 	if (!usbhs_pipe_is_dcp(pipe)) {
 		/*
 		 * This driver checks the pipe condition first to avoid -EBUSY
@@ -275,10 +278,13 @@ static void usbhsf_fifo_clear(struct usbhs_pipe *pipe,
 		if (!ret)
 			ret = usbhsf_fifo_barrier(priv, fifo);
 	}
+<<<<<<< HEAD
 =======
 	if (!usbhs_pipe_is_dcp(pipe))
 		ret = usbhsf_fifo_barrier(priv, fifo);
 >>>>>>> b974ab507910... usb: renesas_usbhs: fix the BCLR setting condition for non-DCP pipe
+=======
+>>>>>>> 5abdd6e83041... usb: renesas_usbhs: fix usbhsf_fifo_clear() for RX direction
 
 	/*
 	 * if non-DCP pipe, this driver should set BCLR when
