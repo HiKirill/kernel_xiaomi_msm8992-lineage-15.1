@@ -182,6 +182,24 @@ static int ptt_sock_rx_nlink_msg (struct sk_buff * skb)
    return 0;
 }
 int ptt_sock_activate_svc(void *pAdapter)
+	uint16_t length;
+	length = be16_to_cpu(payload->wmsg.length);
+	if ((USHRT_MAX - length) < (sizeof(payload->radio) + sizeof(tAniHdr))) {
+		PTT_TRACE(VOS_TRACE_LEVEL_ERROR,
+			"u16 overflow length %d %zu %zu",
+			length,
+			sizeof(payload->radio),
+			sizeof(tAniHdr));
+		return;
+	}
+
+	if (nla_len(tb[CLD80211_ATTR_DATA]) <  (length +
+						sizeof(payload->radio) +
+						sizeof(tAniHdr))) {
+		PTT_TRACE(VOS_TRACE_LEVEL_ERROR, "ATTR_DATA len check failed");
+		return;
+	}
+
 {
    pAdapterHandle = (struct hdd_context_s*)pAdapter;
    pAdapterHandle->ptt_pid = INVALID_PID;
