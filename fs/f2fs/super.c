@@ -1466,13 +1466,11 @@ static int sanity_check_raw_super(struct f2fs_sb_info *sbi,
 			le32_to_cpu(raw_super->log_sectorsize));
 		return 1;
 	}
-	if (le32_to_cpu(raw_super->log_sectors_per_block) +
-		le32_to_cpu(raw_super->log_sectorsize) !=
-			F2FS_MAX_LOG_SECTOR_SIZE) {
+
+	if (le32_to_cpu(raw_super->segment_count) > F2FS_MAX_SEGMENT) {
 		f2fs_msg(sb, KERN_INFO,
-			"Invalid log sectors per block(%u) log sectorsize(%u)",
-			le32_to_cpu(raw_super->log_sectors_per_block),
-			le32_to_cpu(raw_super->log_sectorsize));
+			"Invalid segment count (%u)",
+			le32_to_cpu(raw_super->segment_count));
 		return 1;
 	}
 
